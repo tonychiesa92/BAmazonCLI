@@ -2,7 +2,7 @@
 
 ### Overview
 
-BAmazon is a CLI-based storefront using a MySQL database backend.
+BAmazon is a Amazon "like" CLI-based storefront using a MySQL database backend.
 
 
 ### Technologies
