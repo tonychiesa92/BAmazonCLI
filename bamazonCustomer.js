@@ -54,7 +54,7 @@ function purchasePrompt() {
         {
             name: "ID",
             type: "input",
-            message: "Please enter Item ID you like to purhcase (press Enter key to exit).",
+            message: "Please enter Item ID you like to purhcase (press 0 or Enter key to exit).",
             filter: Number
         }
 

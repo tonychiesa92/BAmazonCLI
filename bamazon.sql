@@ -45,8 +45,4 @@ VALUES ("Bluetooth Speaker", "Electronics", 39.79, 6);
 
 SELECT * FROM products;
 
--- highest value in a cloumn
-select max(item_id) from products;
 
-UPDATE products SET stock_quantity = stock_quantity - 1 + WHERE item_id = 8;
-SELECT * FROM products;
