@@ -34,14 +34,17 @@ BAmazon is a CLI-based storefront using a MySQL database backend.
 
 ### Examples of the app working
 
-Here is an example of running node bamazonCustomer.js
+Here is an example of running node bamazonCustomer.js.
 ![Image of movie-this](./images/Capture.PNG)
 
 Here is an example of purchasing an item.
+
 ![Image of concert-this](./images/total.PNG)
 
 Here is an example of an insufficient quantity of an item.
+
 ![Image of spotify-this-song](./images/insufficient.PNG)
 
 Here is an example exiting the store.
+
 ![Image of do-what-it-says](./images/enter2exit.PNG)
