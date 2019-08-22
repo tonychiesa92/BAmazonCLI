@@ -25,7 +25,7 @@ connection.connect(function (err) {
     // Logs the connection.threadId
     console.log("connected as id " + connection.threadId);
 
-   
+    displayBamazonDB();
 
 });
 
@@ -43,7 +43,6 @@ function displayBamazonDB() {
             );
         }
         console.log(displayTable.toString());
-
 
         purchasePrompt();
     });
@@ -79,13 +78,15 @@ function purchaseOrder(ID, amtNeeded) {
             var totalCost = res[0].price * amtNeeded;
             console.log("Good news your order is in stock!");
             console.log("Your total cost for " + amtNeeded + " " + res[0].product_name + " is " + totalCost + " Thank you!");
-
-            connection.query("UPDATE products SET stock_quantity = stock_quantity - " + amtNeeded + "WHERE item_id = " + ID);
+            
+            connection.query("UPDATE products SET stock_quantity = stock_quantity - " + amtNeeded + " WHERE item_id = " + ID);
+            
         } else {
             console.log("Insufficient quantity, sorry we do not have enough " + res[0].product_name + " to complete your order.");
         };
+       
         displayBamazonDB();
+        connection.end();
     });
 };
 
-displayBamazonDB();
