@@ -53,19 +53,34 @@ function purchasePrompt() {
         {
             name: "ID",
             type: "input",
-            message: "Please enter Item ID you like to purhcase.",
+            message: "Please enter Item ID you like to purhcase (press Enter key to exit).",
             filter: Number
-        },
-        {
-            name: "Quantity",
-            type: "input",
-            message: "How many items do you wish to purchase?",
-            filter: Number
-        },
+        }
+        
         ]).then(function (answers) {
             var quantityNeeded = answers.Quantity;
             var IDrequested = answers.ID;
-            purchaseOrder(IDrequested, quantityNeeded);
+            if (IDrequested===0){
+                console.log("Thanks for shopping with us, come back soon!");
+                connection.end();
+            }
+            else if (IDrequested>10){
+                console.log("Please enter a valid item ID.");
+                connection.end();
+            }
+            else{
+                inquirer.prompt([
+                {
+                    name: "Quantity",
+                    type: "input",
+                    message: "How many items do you wish to purchase?",
+                    filter: Number
+                }]).then(function (answers){
+
+                });
+           //purchaseOrder(IDrequested, quantityNeeded);
+            }
+            
         });
 };
 
