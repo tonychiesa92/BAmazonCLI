@@ -44,3 +44,6 @@ INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Bluetooth Speaker", "Electronics", 39.79, 6);
 
 SELECT * FROM products;
+
+-- highest value in a cloumn
+select max(item_id) from products;
