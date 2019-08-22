@@ -49,6 +49,7 @@ function displayBamazonDB() {
 };
 
 function purchasePrompt() {
+
     inquirer.prompt([
         {
             name: "ID",
@@ -56,32 +57,34 @@ function purchasePrompt() {
             message: "Please enter Item ID you like to purhcase (press Enter key to exit).",
             filter: Number
         }
-        
-        ]).then(function (answers) {
-            var quantityNeeded = answers.Quantity;
-            var IDrequested = answers.ID;
-            if (IDrequested===0){
-                console.log("Thanks for shopping with us, come back soon!");
-                connection.end();
-            }
-            else if (IDrequested>10){
-                console.log("Please enter a valid item ID.");
-                connection.end();
-            }
-            else{
-                inquirer.prompt([
+
+    ]).then(function (answers) {
+       
+        var IDrequested = answers.ID;
+        if (IDrequested === 0) {
+            console.log("Thanks for shopping with us, come back soon!");
+            connection.end();
+        }
+        else if (IDrequested > 10) {
+            console.log("Please enter a valid item ID.");
+            purchasePrompt();
+        }
+        else {
+            inquirer.prompt([
                 {
                     name: "Quantity",
                     type: "input",
                     message: "How many items do you wish to purchase?",
                     filter: Number
-                }]).then(function (answers){
-
+                }
+            ]).then(function (answers) {
+                var quantityNeeded = answers.Quantity;
+                purchaseOrder(IDrequested, quantityNeeded);
                 });
-           //purchaseOrder(IDrequested, quantityNeeded);
-            }
             
-        });
+        }
+
+    });
 };
 
 function purchaseOrder(ID, amtNeeded) {
@@ -93,15 +96,15 @@ function purchaseOrder(ID, amtNeeded) {
             var totalCost = res[0].price * amtNeeded;
             console.log("Good news your order is in stock!");
             console.log("Your total cost for " + amtNeeded + " " + res[0].product_name + " is " + totalCost + " Thank you!");
-            
+
             connection.query("UPDATE products SET stock_quantity = stock_quantity - " + amtNeeded + " WHERE item_id = " + ID);
-            
+
         } else {
             console.log("Insufficient quantity, sorry we do not have enough " + res[0].product_name + " to complete your order.");
         };
-       
+
         displayBamazonDB();
-        connection.end();
+        //connection.end();
     });
 };
 
